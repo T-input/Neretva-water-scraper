@@ -1,0 +1,48 @@
+name: Daily Water Level Scrape
+
+on:
+  schedule:
+    # Runs daily at 11:00 UTC (which is 13:00 CEST)
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+    # Allows you to manually trigger the workflow from the GitHub Actions tab
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to push data back to the repo
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9' # Or your preferred version, e.g., '3.10', '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        # Install Firefox (required for geckodriver)
+        sudo apt-get update
+        sudo apt-get install -y firefox
+
+    - name: Run Jadran.ba Scraper
+      run: |
+        python GH_jadranBA_scraper.py
+
+    - name: Run Vodostaji.hr Scraper
+      run: |
+        python GH_HRvode_scraper.py
+
+    - name: Commit and push changes (scraped data)
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add jadranBA_scraped_data/
+        git add HRvode_scraped_data/
+        git commit -m "Automated daily water level data update" || echo "No changes to commit"
+        git push || echo "No changes to push"
