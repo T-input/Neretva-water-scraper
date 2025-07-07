@@ -25,7 +25,8 @@ def scrape_vodostaji_voda_hr(url):
     data = []
     try:
         driver.get(url)
-        print(f"Navigated to: {url}")
+    except Exception as e:
+        print(f"Failed to load page: {e}")
         try:
             btn_list_element = WebDriverWait(driver, 20).until(
                 EC.element_to_be_clickable((By.ID, "btn_list"))
