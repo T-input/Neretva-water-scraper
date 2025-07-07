@@ -2,8 +2,7 @@ name: Daily Water Level Scrape
 
 on:
   schedule:
-    # Runs daily at 11:00 UTC (which is 13:00 CEST)
-    - cron: '0 11 * * *'
+    - cron: '0 11 * * *' # Runs daily at 11:00 UTC (which is 13:00 CEST)
   workflow_dispatch:
     # Allows you to manually trigger the workflow from the GitHub Actions tab
 
@@ -26,29 +25,28 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        # Install Firefox (required for geckodriver)
         sudo apt-get update
         sudo apt-get install -y firefox
 
     - name: Run Jadran.ba Scraper
       run: |
         python GH_jadranBA_scraper.py
-
-    - name: Upload Scraper Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: jadranba-artifacts
-        path: scraped_data_avpjm_jadran_ba/
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
 
     - name: Run Vodostaji.hr Scraper
       run: |
-        python GH_HRvode_scraper.py
+        python GH_vodostajiHR_scraper.py
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
 
     - name: Commit and push changes (scraped data)
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add jadranBA_scraped_data/
-        git add HRvode_scraped_data/
+        git add scraped_data_avpjm_jadran_ba/
+        git add scraped_data_vodostaji_voda_hr/
         git commit -m "Automated daily water level data update" || echo "No changes to commit"
         git push || echo "No changes to push"
+
+    # GitHub Actions will now only notify you on workflow failure by default.
