@@ -27,7 +27,7 @@ def scrape_avpjm_jadran_ba(url):
         driver.get(url)
     except Exception as e:
         print(f"Failed to load page: {e}")
-        WebDriverWait(driver, 40).until(
+        WebDriverWait(driver, 60).until(
             EC.presence_of_element_located((By.CLASS_NAME, "v-data-table__wrapper"))
         )
         print("Table wrapper found. Proceeding to parse.")
@@ -86,7 +86,18 @@ def scrape_avpjm_jadran_ba(url):
 if __name__ == "__main__":
     url = "https://avpjm.jadran.ba/vodomjerne_stanice"
     print("\n--- Scraping from avpjm.jadran.ba ---")
-    scraped_data = scrape_avpjm_jadran_ba(url)
+    scraped_data = None
+    for attempt in range(3):
+        try:
+            scraped_data = scrape_avpjm_jadran_ba(url)
+            if scraped_data:
+                break
+        except Exception as e:
+            print(f"Attempt {attempt+1} failed: {e}")
+            time.sleep(10)
+    else:
+        print("All retries failed.")
+        exit(1)
     if scraped_data:
         output_dir = "scraped_data_avpjm_jadran_ba"
         os.makedirs(output_dir, exist_ok=True)
