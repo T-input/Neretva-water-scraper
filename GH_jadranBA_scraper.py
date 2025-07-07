@@ -25,9 +25,9 @@ def scrape_avpjm_jadran_ba(url):
     data = []
     try:
         driver.get(url)
-        print(f"Navigated to: {url}")
-
-        WebDriverWait(driver, 20).until(
+    except Exception as e:
+        print(f"Failed to load page: {e}")
+        WebDriverWait(driver, 40).until(
             EC.presence_of_element_located((By.CLASS_NAME, "v-data-table__wrapper"))
         )
         print("Table wrapper found. Proceeding to parse.")
