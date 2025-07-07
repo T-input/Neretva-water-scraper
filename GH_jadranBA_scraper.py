@@ -5,7 +5,7 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.firefox import GeckoDriverManager # UNCOMMENT THIS LINE
+from webdriver_manager.firefox import GeckoDriverManager
 
 import json
 import os
@@ -17,16 +17,12 @@ def scrape_avpjm_jadran_ba(url):
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-
-    # IMPORTANT: Use GeckoDriverManager to automatically manage geckodriver
-    service = webdriver.firefox.service.Service(GeckoDriverManager().install()) # UNCOMMENT THIS LINE
-    driver = webdriver.Firefox(service=service, options=options) # MODIFY THIS LINE to use service=service
+    service = webdriver.firefox.service.Service(GeckoDriverManager().install())
+    driver = webdriver.Firefox(service=service, options=options)
 
     data = []
     try:
         driver.get(url)
-    except Exception as e:
-        print(f"Failed to load page: {e}")
         WebDriverWait(driver, 60).until(
             EC.presence_of_element_located((By.CLASS_NAME, "v-data-table__wrapper"))
         )
@@ -79,6 +75,7 @@ def scrape_avpjm_jadran_ba(url):
 
     except Exception as e:
         print(f"An unexpected error occurred during scraping: {e}")
+        driver.save_screenshot("scraping_error.png")
     finally:
         driver.quit()
     return data
