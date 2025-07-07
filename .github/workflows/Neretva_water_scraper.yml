@@ -34,6 +34,12 @@ jobs:
       run: |
         python GH_jadranBA_scraper.py
 
+    - name: Upload Scraper Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: jadranba-artifacts
+        path: scraped_data_avpjm_jadran_ba/
+
     - name: Run Vodostaji.hr Scraper
       run: |
         python GH_HRvode_scraper.py
