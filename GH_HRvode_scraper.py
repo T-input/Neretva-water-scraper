@@ -89,17 +89,26 @@ def scrape_vodostaji_voda_hr(url):
             driver.quit()
         return data
 
-    if __name__ == "__main__":
-        url = "https://vodostaji.voda.hr/"
-        print("\n--- Scraping from vodostaji.voda.hr ---")
-        scraped_data = scrape_vodostaji_voda_hr(url)
-        if scraped_data:
-            output_dir = "scraped_data_vodostaji_voda_hr"
-            os.makedirs(output_dir, exist_ok=True)
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = os.path.join(output_dir, f"water_levels_voda_hr_{timestamp}.json")
-            with open(filename, 'w', encoding='utf-8') as f:
-                json.dump(scraped_data, f, ensure_ascii=False, indent=4)
-            print(f"Data from vodostaji.voda.hr saved to: {filename}")
-        else:
-            print("No data scraped from vodostaji.voda.hr.")
+if __name__ == "__main__":
+    url = "https://vodostaji.voda.hr/"
+    print("\n--- Scraping from vodostaji.voda.hr ---")
+    for attempt in range(3):
+        try:
+            scraped_data = scrape_vodostaji_voda_hr(url)
+            break
+        except Exception as e:
+            print(f"Attempt {attempt+1} failed: {e}")
+            time.sleep(10)
+    else:
+        print("All retries failed.")
+        exit(1)
+    if scraped_data:
+        output_dir = "scraped_data_vodostaji_voda_hr"
+        os.makedirs(output_dir, exist_ok=True)
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = os.path.join(output_dir, f"water_levels_voda_hr_{timestamp}.json")
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(scraped_data, f, ensure_ascii=False, indent=4)
+        print(f"Data from vodostaji.voda.hr saved to: {filename}")
+    else:
+        print("No data scraped from vodostaji.voda.hr.")
