@@ -82,6 +82,15 @@ def scrape_avpjm_jadran_ba(url):
         with open("scraping_error.html", "w", encoding="utf-8") as f:
             f.write(driver.page_source)
     finally:
+        # After scraping, before driver.quit()
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_dir = "scraped_data_avpjm_jadran_ba"
+        os.makedirs(output_dir, exist_ok=True)
+        # Save HTML
+        with open(os.path.join(output_dir, f"page_source_{timestamp}.html"), 'w', encoding='utf-8') as f_html:
+            f_html.write(driver.page_source)
+        # Save screenshot
+        driver.save_screenshot(os.path.join(output_dir, f"screenshot_{timestamp}.png"))
         driver.quit()
     return data
 
