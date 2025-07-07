@@ -17,6 +17,9 @@ def scrape_avpjm_jadran_ba(url):
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
+    # Optionally spoof user agent
+    options.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
+
     service = webdriver.firefox.service.Service(GeckoDriverManager().install())
     driver = webdriver.Firefox(service=service, options=options)
 
@@ -76,6 +79,8 @@ def scrape_avpjm_jadran_ba(url):
     except Exception as e:
         print(f"An unexpected error occurred during scraping: {e}")
         driver.save_screenshot("scraping_error.png")
+        with open("scraping_error.html", "w", encoding="utf-8") as f:
+            f.write(driver.page_source)
     finally:
         driver.quit()
     return data
@@ -85,15 +90,14 @@ if __name__ == "__main__":
     print("\n--- Scraping from avpjm.jadran.ba ---")
     scraped_data = None
     for attempt in range(3):
-        try:
-            scraped_data = scrape_avpjm_jadran_ba(url)
-            if scraped_data:
-                break
-        except Exception as e:
-            print(f"Attempt {attempt+1} failed: {e}")
+        scraped_data = scrape_avpjm_jadran_ba(url)
+        if scraped_data:
+            break
+        else:
+            print(f"Attempt {attempt+1} failed, retrying in 10 seconds...")
             time.sleep(10)
     else:
-        print("All retries failed.")
+        print("All retries failed. See scraping_error.png and scraping_error.html for details.")
         exit(1)
     if scraped_data:
         output_dir = "scraped_data_avpjm_jadran_ba"
