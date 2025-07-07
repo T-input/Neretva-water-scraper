@@ -78,11 +78,15 @@ def scrape_avpjm_jadran_ba(url):
 
     except Exception as e:
         print(f"An unexpected error occurred during scraping: {e}")
-        driver.save_screenshot("scraping_error.png")
-        with open("scraping_error.html", "w", encoding="utf-8") as f:
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_dir = "scraped_data_avpjm_jadran_ba"
+        os.makedirs(output_dir, exist_ok=True)
+        # Save HTML and screenshot on failure
+        driver.save_screenshot(os.path.join(output_dir, f"error_screenshot_{timestamp}.png"))
+        with open(os.path.join(output_dir, f"error_page_source_{timestamp}.html"), "w", encoding="utf-8") as f:
             f.write(driver.page_source)
     finally:
-        # After scraping, before driver.quit()
+        # Always save HTML and screenshot for debugging
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         output_dir = "scraped_data_avpjm_jadran_ba"
         os.makedirs(output_dir, exist_ok=True)
@@ -106,7 +110,7 @@ if __name__ == "__main__":
             print(f"Attempt {attempt+1} failed, retrying in 10 seconds...")
             time.sleep(10)
     else:
-        print("All retries failed. See scraping_error.png and scraping_error.html for details.")
+        print("All retries failed. See artifacts in scraped_data_avpjm_jadran_ba/ for details.")
         exit(1)
     if scraped_data:
         output_dir = "scraped_data_avpjm_jadran_ba"
