@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.remote.remote_connection import RemoteConnection # Import for timeout
+from selenium.webdriver.remote.remote_connection import RemoteConnection
 
 import json
 import os
@@ -20,23 +20,32 @@ def scrape_avpjm_jadran_ba(url):
     options.add_argument("--disable-dev-shm-usage")
     options.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
 
-    # Increase the connection timeout for the Selenium driver
-    # Default is often 60 seconds, let's try 180 or 300 seconds (3-5 minutes)
-    # This timeout is for the initial connection to geckodriver, not page load.
-    RemoteConnection.set_timeout(300) # Set timeout to 300 seconds (5 minutes)
+    # This sets the global default for RemoteConnection timeouts for all Selenium commands.
+    # It's good to keep this, although the Service start_timeout is more critical for initial driver launch.
+    RemoteConnection.set_timeout(300)
 
-    service = webdriver.firefox.service.Service(GeckoDriverManager().install())
-    # Add a small delay after driver installation, before starting the browser
-    time.sleep(5) # Give geckodriver a few seconds to fully initialize
+    # Define output directory early to use for geckodriver logs
+    output_dir = "scraped_data_avpjm_jadran_ba"
+    os.makedirs(output_dir, exist_ok=True) # Ensure directory exists before creating log file
+    geckodriver_log_path = os.path.join(output_dir, "geckodriver.log")
+
+    # Initialize the GeckoDriver service with an increased startup timeout
+    # and a log path for debugging. This is crucial for the "Read timed out" error during startup.
+    service = webdriver.firefox.service.Service(
+        executable_path=GeckoDriverManager().install(),
+        log_path=geckodriver_log_path, # This will save geckodriver's internal logs
+        start_timeout=180 # Increased to 3 minutes, as default 30s is often too short for CI
+    )
 
     driver = webdriver.Firefox(service=service, options=options)
+    print("WebDriver initialized. Navigating to URL...") # Added print statement for clarity
 
     data = []
     try:
         driver.get(url)
         print(f"Navigated to: {url}")
 
-        WebDriverWait(driver, 60).until( # This is for page content, keep it high
+        WebDriverWait(driver, 60).until(
             EC.presence_of_element_located((By.CLASS_NAME, "v-data-table__wrapper"))
         )
         print("Table wrapper found. Proceeding to parse.")
@@ -89,46 +98,4 @@ def scrape_avpjm_jadran_ba(url):
     except Exception as e:
         print(f"An unexpected error occurred during scraping: {e}")
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_dir = "scraped_data_avpjm_jadran_ba"
-        os.makedirs(output_dir, exist_ok=True)
-        driver.save_screenshot(os.path.join(output_dir, f"error_screenshot_{timestamp}.png"))
-        with open(os.path.join(output_dir, f"error_page_source_{timestamp}.html"), "w", encoding="utf-8") as f:
-            f.write(driver.page_source)
-    finally:
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_dir = "scraped_data_avpjm_jadran_ba"
-        os.makedirs(output_dir, exist_ok=True)
-        with open(os.path.join(output_dir, f"page_source_{timestamp}.html"), 'w', encoding='utf-8') as f_html:
-            f_html.write(driver.page_source)
-        driver.save_screenshot(os.path.join(output_dir, f"screenshot_{timestamp}.png"))
-        driver.quit()
-    return data
-
-if __name__ == "__main__":
-    url = "https://avpjm.jadran.ba/vodomjerne_stanice"
-    print("\n--- Scraping from avpjm.jadran.ba ---")
-    scraped_data = None
-    for attempt in range(3):
-        print(f"Attempt {attempt+1} to scrape avpjm.jadran.ba...")
-        scraped_data = scrape_avpjm_jadran_ba(url)
-        if scraped_data:
-            print(f"Attempt {attempt+1} successful.")
-            break
-        else:
-            print(f"Attempt {attempt+1} failed, retrying in 10 seconds...")
-            time.sleep(10)
-    else: # This else block executes if the loop completes without a 'break'
-        print("All retries failed for avpjm.jadran.ba. See artifacts for details.")
-        # Exit with a non-zero code to indicate failure to GitHub Actions
-        exit(1)
-
-    if scraped_data:
-        output_dir = "scraped_data_avpjm_jadran_ba"
-        os.makedirs(output_dir, exist_ok=True)
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = os.path.join(output_dir, f"water_levels_jadran_ba_{timestamp}.json")
-        with open(filename, 'w', encoding='utf-8') as f:
-            json.dump(scraped_data, f, ensure_ascii=False, indent=4)
-        print(f"Data from avpjm.jadran.ba saved to: {filename}")
-    else:
-        print("No data scraped from avpjm.jadran.ba after all retries.") # Should not reach here if exit(1) is called
+        # output_dir
