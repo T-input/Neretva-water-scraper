@@ -28,39 +28,39 @@ def scrape_vodostaji_voda_hr(url):
     except Exception as e:
         print(f"Failed to load page: {e}")
         try:
-            btn_list_element = WebDriverWait(driver, 40).until(
+            btn_list_element = WebDriverWait(driver, 60).until(
                 EC.element_to_be_clickable((By.ID, "btn_list"))
             )
             btn_list_element.click()
             print("Clicked 'btn_list' to proceed.")
-            time.sleep(2)
+            time.sleep(5)
         except Exception as e:
             print(f"Failed to find or click 'btn_list' element: {e}")
             return []
 
         try:
-            dropdown_trigger = WebDriverWait(driver, 20).until(
+            dropdown_trigger = WebDriverWait(driver, 60).until(
                 EC.element_to_be_clickable((By.ID, "bp"))
             )
             dropdown_trigger.click()
             print("Clicked the dropdown trigger (ID 'bp').")
-            time.sleep(2)
+            time.sleep(5)
         except Exception as e:
             print(f"Failed to find or click dropdown trigger (ID 'bp'): {e}")
             return []
 
         option_text = "32 Mali slivovi Neretva - Korčula i Dubrovačko primorje i otoci"
         try:
-            option_element = WebDriverWait(driver, 20).until(
+            option_element = WebDriverWait(driver, 60).until(
                 EC.element_to_be_clickable((By.XPATH, f"//a[normalize-space()='{option_text}']"))
             )
             option_element.click()
             print(f"Selected '{option_text}' from dropdown.")
-            WebDriverWait(driver, 20).until(
+            WebDriverWait(driver, 60).until(
                 EC.presence_of_element_located((By.TAG_NAME, "table"))
             )
             print("Table element found on page after selection.")
-            time.sleep(2)
+            time.sleep(5)
         except Exception as e:
             print(f"Failed to find or click dropdown option '{option_text}' or table did not load: {e}")
             return []
