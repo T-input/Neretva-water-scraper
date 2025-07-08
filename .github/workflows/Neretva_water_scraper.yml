@@ -36,7 +36,7 @@ jobs:
 
     - name: Run Vodostaji.hr Scraper
       run: |
-        python GH_vodostajiHR_scraper.py
+        python GH_HRvode_scraper.py
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
 
