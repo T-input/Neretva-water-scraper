@@ -28,11 +28,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y firefox
 
-    - name: Run Jadran.ba Scraper
-      run: |
-        python GH_jadranBA_scraper.py
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
+  #  - name: Run Jadran.ba Scraper
+   #   run: |
+    #    python GH_jadranBA_scraper.py
+     # env:
+      #  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
 
     - name: Run Vodostaji.hr Scraper
       run: |
