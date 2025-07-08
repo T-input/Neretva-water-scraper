@@ -64,25 +64,26 @@ def scrape_vodostaji_voda_hr(url):
         except Exception as e:
             print(f"Failed to find or click dropdown option '{option_text}' or table did not load: {e}")
             return []
-
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
-        actual_table = soup.find('table', width="96%", border="0", cellspacing="0", cellpadding="5")
-        if actual_table:
-            print("Found the data table.")
-            headers = [th.get_text(strip=True) for th in actual_table.find_all('th')]
-            if headers:
-                data.append(headers)
-                print("Headers:", headers)
-            rows = actual_table.find('tbody').find_all('tr') if actual_table.find('tbody') else actual_table.find_all('tr')
-            start_row = 1 if headers and len(rows) > 0 and rows[0].find('th') else 0
-            for row in rows[start_row:]:
-                cols = row.find_all('td')
-                cols = [col.get_text(strip=True) for col in cols]
-                if cols and any(col for col in cols):
-                    data.append(cols)
-                print(f"Scraped {len(data) - (1 if headers else 0)} data rows.")
-            else:
-                print("No <table> element found with the specified attributes. Check the selector again.")
+            
+        try:
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
+            actual_table = soup.find('table', width="96%", border="0", cellspacing="0", cellpadding="5")
+            if actual_table:
+                print("Found the data table.")
+                headers = [th.get_text(strip=True) for th in actual_table.find_all('th')]
+                if headers:
+                    data.append(headers)
+                    print("Headers:", headers)
+                rows = actual_table.find('tbody').find_all('tr') if actual_table.find('tbody') else actual_table.find_all('tr')
+                start_row = 1 if headers and len(rows) > 0 and rows[0].find('th') else 0
+                for row in rows[start_row:]:
+                    cols = row.find_all('td')
+                    cols = [col.get_text(strip=True) for col in cols]
+                    if cols and any(col for col in cols):
+                        data.append(cols)
+                    print(f"Scraped {len(data) - (1 if headers else 0)} data rows.")
+                else:
+                    print("No <table> element found with the specified attributes. Check the selector again.")
         except Exception as e:
             print(f"An unexpected error occurred during scraping: {e}")
         finally:
