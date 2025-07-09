@@ -58,6 +58,9 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
 
+    - name: Print working directory
+      run: pwd && ls -la
+
     - name: Dump logs if failed
       if: failure()
       run: |

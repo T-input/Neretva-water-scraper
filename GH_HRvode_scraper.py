@@ -15,7 +15,7 @@ import logging
 
 logging.basicConfig(level = logging.DEBUG)
 os.environ["MOZ_LOG"] = "timestamp,sync,nsHttp:5,Gecko:2"
-os.environ["MOZ_LOG_FILE"] = "firefox.log"
+os.environ["MOZ_LOG_FILE"] =  os.path.abspath("firefox.log")
 
 def scrape_vodostaji_voda_hr(url):
     logging.info("Starting scrape")
@@ -26,7 +26,7 @@ def scrape_vodostaji_voda_hr(url):
     options.add_argument("--window-size=1920,1080")
 
     # IMPORTANT: Use GeckoDriverManager to automatically manage geckodriver
-    service = webdriver.firefox.service.Service(GeckoDriverManager().install(), log_path="geckodriver.log") # UNCOMMENT THIS LINE
+    service = webdriver.firefox.service.Service(GeckoDriverManager().install(), log_path= os.path.abspath("geckodriver.log")) # UNCOMMENT THIS LINE
     driver = webdriver.Firefox(service=service, options=options) # MODIFY THIS LINE to use service=service
 
     logging.info("Initialized driver")
