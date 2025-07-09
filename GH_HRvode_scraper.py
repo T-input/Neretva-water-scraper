@@ -32,7 +32,7 @@ def scrape_vodostaji_voda_hr(url):
     logging.info("Initialized driver")
     data = []
     try:
-        driver.get(url)
+        driver.get("https://example.com")
     except Exception as e:
         logging.warning(f"Failed to load page: {e}")
     try:
@@ -101,7 +101,7 @@ def scrape_vodostaji_voda_hr(url):
 if __name__ == "__main__":
     url = "https://vodostaji.voda.hr/"
     logging.info("\n--- Scraping from vodostaji.voda.hr ---")
-    for attempt in range(2):
+    for attempt in range(1):
         try:
             scraped_data = scrape_vodostaji_voda_hr(url)
             break
