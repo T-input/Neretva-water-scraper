@@ -13,7 +13,7 @@ import datetime
 import time
 import logging
 
-logging.basicConfig(level = logging.INFO)
+logging.basicConfig(level = logging.DEBUG)
 
 def scrape_vodostaji_voda_hr(url):
     logging.info("Starting scrape")
