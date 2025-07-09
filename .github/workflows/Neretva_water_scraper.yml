@@ -70,6 +70,13 @@ jobs:
 
         echo "== Geckodriver log =="
         cat geckodriver.log || echo "No geckodriver.log found"
+    
+    - name: Dump child log if failed
+      if: failure()
+      run: |
+        echo "== Firefox crash log =="
+        cat firefox.child-1.moz_log || echo "No firefox.moz_log found"
+
 
     - name: Commit and push changes (scraped data)
       run: |
