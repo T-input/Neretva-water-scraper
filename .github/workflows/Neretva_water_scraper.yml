@@ -42,7 +42,9 @@ jobs:
           libxcomposite1 \
           libxcursor1 \
           libxdamage1 \
-          libxi6
+          libxi6 \
+          xauth \
+          xvfb
 
     - name: Run Jadran.ba Scraper
       run: |

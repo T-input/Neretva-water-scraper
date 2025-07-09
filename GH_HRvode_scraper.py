@@ -21,6 +21,7 @@ def scrape_vodostaji_voda_hr(url):
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1080")
 
     # IMPORTANT: Use GeckoDriverManager to automatically manage geckodriver
     service = webdriver.firefox.service.Service(GeckoDriverManager().install()) # UNCOMMENT THIS LINE
