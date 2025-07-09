@@ -52,11 +52,13 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
 
-    - name: Run Vodostaji.hr Scraper
+    - name: Run  Vodostaji.hr with xvfb-run
       run: |
-        python GH_HRvode_scraper.py
+        sudo apt-get update
+        sudo apt-get install -y xvfb
+        xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" python GH_HRvode_scraper.py
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
     - name: Commit and push changes (scraped data)
       run: |
