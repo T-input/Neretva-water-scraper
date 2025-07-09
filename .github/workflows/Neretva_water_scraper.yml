@@ -52,13 +52,20 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
 
-    - name: Run  Vodostaji.hr with xvfb-run
+    - name: Run Vodostaji.hr Scraper
       run: |
-        sudo apt-get update
-        sudo apt-get install -y xvfb
-        xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" python GH_HRvode_scraper.py
+        python GH_HRvode_scraper.py
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
+
+    - name: Dump logs if failed
+      if: failure()
+      run: |
+        echo "== Firefox crash log =="
+        cat firefox.log || echo "No firefox.log found"
+
+        echo "== Geckodriver log =="
+        cat geckodriver.log || echo "No geckodriver.log found"
 
     - name: Commit and push changes (scraped data)
       run: |
