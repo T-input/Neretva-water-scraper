@@ -27,12 +27,12 @@ def scrape_vodostaji_voda_hr(url):
 
     # IMPORTANT: Use GeckoDriverManager to automatically manage geckodriver
     service = webdriver.firefox.service.Service(GeckoDriverManager().install(), log_path= os.path.abspath("geckodriver.log")) # UNCOMMENT THIS LINE
+    logging.info("Initialized service")
     driver = webdriver.Firefox(service=service, options=options) # MODIFY THIS LINE to use service=service
-
     logging.info("Initialized driver")
     data = []
     try:
-        driver.get("https://example.com")
+        driver.get(url)
     except Exception as e:
         logging.warning(f"Failed to load page: {e}")
     try:
@@ -101,7 +101,7 @@ def scrape_vodostaji_voda_hr(url):
 if __name__ == "__main__":
     url = "https://vodostaji.voda.hr/"
     logging.info("\n--- Scraping from vodostaji.voda.hr ---")
-    for attempt in range(1):
+    for attempt in range(2):
         try:
             scraped_data = scrape_vodostaji_voda_hr(url)
             break
