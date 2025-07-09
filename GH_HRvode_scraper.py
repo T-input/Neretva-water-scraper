@@ -15,7 +15,7 @@ import logging
 
 logging.basicConfig(level = logging.DEBUG)
 os.environ["MOZ_LOG"] = "timestamp,sync,nsHttp:5,Gecko:2"
-os.environ["MOZ_LOG_FILE"] =  os.path.abspath("firefox.log")
+os.environ["MOZ_LOG_FILE"] =  os.path.abspath("firefox")
 
 def scrape_vodostaji_voda_hr(url):
     logging.info("Starting scrape")
@@ -101,7 +101,7 @@ def scrape_vodostaji_voda_hr(url):
 if __name__ == "__main__":
     url = "https://vodostaji.voda.hr/"
     logging.info("\n--- Scraping from vodostaji.voda.hr ---")
-    for attempt in range(3):
+    for attempt in range(2):
         try:
             scraped_data = scrape_vodostaji_voda_hr(url)
             break
