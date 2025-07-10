@@ -6,8 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.firefox import GeckoDriverManager
-# Import the specific Connection class instead of the deprecated class method
-from selenium.webdriver.remote.remote_connection import Connection 
+# Keep RemoteConnection import
+from selenium.webdriver.remote.remote_connection import RemoteConnection 
 
 import json
 import os
@@ -21,9 +21,8 @@ def scrape_avpjm_jadran_ba(url):
     options.add_argument("--disable-dev-shm-usage")
     options.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
 
-    client_config = Connection(timeout=300)
-
-    # Define output directory early to use for geckodriver logs
+    selenium_connection = RemoteConnection("http://localhost:0", keep_alive=True)
+    selenium_connection.timeout = 300 # Set timeout on the instance (300 seconds = 5 minutes)
     output_dir = "scraped_data_avpjm_jadran_ba"
     os.makedirs(output_dir, exist_ok=True) # Ensure directory exists before creating log file
     geckodriver_log_path = os.path.join(output_dir, "geckodriver.log")
@@ -39,8 +38,8 @@ def scrape_avpjm_jadran_ba(url):
     driver = None # Initialize driver to None in case creation fails
     data = [] # Initialize data list
     try:
-        # Pass the configured client_config to the driver constructor
-        driver = webdriver.Firefox(service=service, options=options, client=client_config)
+        # Pass the configured selenium_connection instance to the driver constructor
+        driver = webdriver.Firefox(service=service, options=options, client=selenium_connection)
         print("WebDriver initialized. Navigating to URL...")
 
         driver.get(url)
