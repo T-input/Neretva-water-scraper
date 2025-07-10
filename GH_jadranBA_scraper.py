@@ -20,9 +20,6 @@ def scrape_avpjm_jadran_ba(url):
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
-
-    selenium_connection = RemoteConnection("http://localhost:0", keep_alive=True)
-    selenium_connection.timeout = 300 # Set timeout on the instance (300 seconds = 5 minutes)
     output_dir = "scraped_data_avpjm_jadran_ba"
     os.makedirs(output_dir, exist_ok=True) # Ensure directory exists before creating log file
     geckodriver_log_path = os.path.join(output_dir, "geckodriver.log")
