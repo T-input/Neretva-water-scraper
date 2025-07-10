@@ -6,8 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.firefox import GeckoDriverManager
-# RemoteConnection import is no longer strictly needed if not explicitly creating the instance
-# from selenium.webdriver.remote.remote_connection import RemoteConnection 
+# Import RemoteConnection to configure its timeout
+from selenium.webdriver.remote.remote_connection import RemoteConnection 
 
 import json
 import os
@@ -21,11 +21,13 @@ def scrape_avpjm_jadran_ba(url):
     options.add_argument("--disable-dev-shm-usage")
     options.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
 
-    # --- REMOVED DEPRECATED CLIENT CONFIGURATION ---
-    # These lines should be completely removed, as per previous instructions
-    # selenium_connection = RemoteConnection("http://localhost:0", keep_alive=True)
-    # selenium_connection.timeout = 300 
-    # --- END REMOVED SECTION ---
+    # --- RE-INTRODUCED CLIENT CONNECTION CONFIGURATION ---
+    # Create an instance of RemoteConnection and set the timeout directly in its constructor.
+    # The 'remote_server_addr' ("http://localhost:4444/wd/hub") is a placeholder,
+    # as Selenium will internally connect to geckodriver's dynamic port.
+    # We set timeout to 300 seconds (5 minutes) to avoid "Read timed out" errors.
+    selenium_connection = RemoteConnection("http://localhost:4444/wd/hub", keep_alive=True, timeout=300)
+    # --- END RE-INTRODUCED SECTION ---
 
     # Define output directory early to use for geckodriver logs
     output_dir = "scraped_data_avpjm_jadran_ba"
@@ -43,8 +45,8 @@ def scrape_avpjm_jadran_ba(url):
     driver = None # Initialize driver to None in case creation fails
     data = [] # Initialize data list
     try:
-        # --- CORRECTED LINE: REMOVED 'client=selenium_connection' ---
-        driver = webdriver.Firefox(service=service, options=options)
+        # Pass the configured selenium_connection instance to the driver constructor
+        driver = webdriver.Firefox(service=service, options=options, client=selenium_connection)
         print("WebDriver initialized. Navigating to URL...")
 
         driver.get(url)
