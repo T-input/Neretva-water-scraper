@@ -1,4 +1,4 @@
-import requests
+import requests # Keeping requests import, though not directly used in this Selenium scraper
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
@@ -21,10 +21,10 @@ def scrape_avpjm_jadran_ba(url):
     options.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
 
     # This sets the global default for RemoteConnection timeouts for all Selenium commands.
-    # It's good to keep this, although the Service start_timeout is more critical for initial driver launch.
-    RemoteConnection.set_timeout(300)
+    # It's good practice to keep this.
+    RemoteConnection.set_timeout(300) # Set to 5 minutes for general Selenium operations
 
-    # Define output directory early to use for geckodriver logs
+    # Define output directory early to use for geckodriver logs and artifacts
     output_dir = "scraped_data_avpjm_jadran_ba"
     os.makedirs(output_dir, exist_ok=True) # Ensure directory exists before creating log file
     geckodriver_log_path = os.path.join(output_dir, "geckodriver.log")
@@ -37,19 +37,22 @@ def scrape_avpjm_jadran_ba(url):
         start_timeout=180 # Increased to 3 minutes, as default 30s is often too short for CI
     )
 
-    driver = webdriver.Firefox(service=service, options=options)
-    print("WebDriver initialized. Navigating to URL...") # Added print statement for clarity
-
-    data = []
+    driver = None # Initialize driver to None in case creation fails
+    data = [] # Initialize data list
     try:
+        driver = webdriver.Firefox(service=service, options=options)
+        print("WebDriver initialized. Navigating to URL...")
+
         driver.get(url)
         print(f"Navigated to: {url}")
 
-        WebDriverWait(driver, 60).until(
+        # Wait for the table wrapper div to be present, giving JavaScript time to render it
+        WebDriverWait(driver, 60).until( # Wait up to 60 seconds for the element
             EC.presence_of_element_located((By.CLASS_NAME, "v-data-table__wrapper"))
         )
         print("Table wrapper found. Proceeding to parse.")
 
+        # Once the element is present, get the page source and parse with BeautifulSoup
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         table_wrapper_div = soup.find('div', class_='v-data-table__wrapper')
 
@@ -91,11 +94,60 @@ def scrape_avpjm_jadran_ba(url):
                         data.append(row_data)
                 print(f"Scraped {len(data) - (1 if headers else 0)} data rows.")
             else:
-                print("No <table> element found inside 'v-data-table__wrapper' div.")
+                print("No <table> element found inside 'v-data-table__wrapper' div after waiting.")
         else:
-            print("Div with class 'v-data-table__wrapper' not found.")
+            print("Div with class 'v-data-table__wrapper' not found even after waiting.")
 
     except Exception as e:
         print(f"An unexpected error occurred during scraping: {e}")
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        # output_dir
+        # Save screenshot and page source for debugging if an error occurs
+        if driver: # Only attempt to save if driver was successfully initialized
+            driver.save_screenshot(os.path.join(output_dir, f"error_screenshot_{timestamp}.png"))
+            with open(os.path.join(output_dir, f"error_page_source_{timestamp}.html"), "w", encoding="utf-8") as f:
+                f.write(driver.page_source)
+        else:
+            print("Driver not initialized, cannot save screenshot or page source.")
+    finally:
+        if driver: # Ensure driver exists before trying to quit or save artifacts
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            # Always save final screenshot and page source for general debugging
+            with open(os.path.join(output_dir, f"page_source_{timestamp}.html"), 'w', encoding='utf-8') as f_html:
+                f_html.write(driver.page_source)
+            driver.save_screenshot(os.path.join(output_dir, f"screenshot_{timestamp}.png"))
+            driver.quit() # Ensure the browser is closed
+        else:
+            print("Driver was not initialized, no browser to quit.")
+    return data # Return collected data (may be empty if errors occurred)
+
+if __name__ == "__main__":
+    url = "https://avpjm.jadran.ba/vodomjerne_stanice"
+    print("\n--- Scraping from avpjm.jadran.ba ---")
+    scraped_data = [] # Initialize scraped_data to an empty list
+    for attempt in range(3): # Retry mechanism for transient failures
+        print(f"Attempt {attempt+1} to scrape avpjm.jadran.ba...")
+        try:
+            scraped_data = scrape_avpjm_jadran_ba(url)
+            if scraped_data: # Check if data was actually returned
+                print(f"Attempt {attempt+1} successful. Data scraped.")
+                break # Exit loop if data is successfully scraped
+            else:
+                print(f"Attempt {attempt+1} completed but returned no data. Retrying in 10 seconds...")
+                time.sleep(10)
+        except Exception as e: # Catch any exceptions from the scrape function call
+            print(f"Attempt {attempt+1} failed with an error: {e}. Retrying in 10 seconds...")
+            time.sleep(10)
+    else: # This block executes if the loop completes without a 'break' (all retries failed)
+        print("All retries failed for avpjm.jadran.ba. No data could be scraped.")
+        exit(1) # Indicate failure to GitHub Actions
+
+    if scraped_data: # Only proceed to save if data was collected
+        output_dir = "scraped_data_avpjm_jadran_ba"
+        os.makedirs(output_dir, exist_ok=True)
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = os.path.join(output_dir, f"water_levels_jadran_ba_{timestamp}.json")
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(scraped_data, f, ensure_ascii=False, indent=4)
+        print(f"Data from avpjm.jadran.ba saved to: {filename}")
+    else:
+        print("No data was collected from avpjm.jadran.ba to save.")
