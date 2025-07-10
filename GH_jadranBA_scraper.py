@@ -1,4 +1,4 @@
-import requests # Keeping requests import, though not directly used in this Selenium scraper
+import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
@@ -6,7 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.remote.remote_connection import RemoteConnection
+# Import the specific Connection class instead of the deprecated class method
+from selenium.webdriver.remote.remote_connection import Connection 
 
 import json
 import os
@@ -20,11 +21,9 @@ def scrape_avpjm_jadran_ba(url):
     options.add_argument("--disable-dev-shm-usage")
     options.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
 
-    # This sets the global default for RemoteConnection timeouts for all Selenium commands.
-    # It's good practice to keep this.
-    RemoteConnection.set_timeout(300) # Set to 5 minutes for general Selenium operations
+    client_config = Connection(timeout=300)
 
-    # Define output directory early to use for geckodriver logs and artifacts
+    # Define output directory early to use for geckodriver logs
     output_dir = "scraped_data_avpjm_jadran_ba"
     os.makedirs(output_dir, exist_ok=True) # Ensure directory exists before creating log file
     geckodriver_log_path = os.path.join(output_dir, "geckodriver.log")
@@ -40,7 +39,8 @@ def scrape_avpjm_jadran_ba(url):
     driver = None # Initialize driver to None in case creation fails
     data = [] # Initialize data list
     try:
-        driver = webdriver.Firefox(service=service, options=options)
+        # Pass the configured client_config to the driver constructor
+        driver = webdriver.Firefox(service=service, options=options, client=client_config)
         print("WebDriver initialized. Navigating to URL...")
 
         driver.get(url)
