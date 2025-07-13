@@ -8,6 +8,8 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
+from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException
 
 
 def setup_driver(firefox_binary_path=None, headless=True):
@@ -23,15 +25,20 @@ def setup_driver(firefox_binary_path=None, headless=True):
     return webdriver.Firefox(options=options)
 
 
-def wait_and_click(driver, by, value, timeout=20):
-    """Wait for an element to be clickable and click it."""
-    element = WebDriverWait(driver, timeout).until(
-        EC.element_to_be_clickable((by, value))
-    )
-    element.click()
-    return element
 
-
+def wait_and_click(driver, by, value, timeout=20, post_delay=1):
+    try:
+        element = WebDriverWait(driver, timeout).until(
+            EC.element_to_be_clickable((by, value))
+        )
+        driver.execute_script("arguments[0].scrollIntoView(true);", element)
+        time.sleep(0.5)  # Allow scroll animation
+        element.click()
+        time.sleep(post_delay)  # Let the page react/render
+        return element
+    except (TimeoutException, ElementClickInterceptedException) as e:
+        print(f"[!] Failed to click element ({by}, {value}): {e}")
+        raise
 def scrape_water_levels(url, firefox_binary_path=None):
     driver = None
     data = []
