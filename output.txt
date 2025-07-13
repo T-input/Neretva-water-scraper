@@ -1,0 +1,9 @@
+Starting scrape from: https://vodostaji.voda.hr/
+Opened: https://vodostaji.voda.hr/
+Clicked 'btn_list'
+Opened dropdown 'bp'
+Selected dropdown option: 32 Mali slivovi Neretva - Korčula i Dubrovačko primorje i otoci
+Table loaded
+Headers: ['', 'VODOTOK', 'POSTAJA', 'ZADNJE MJERENJE', 'VODOSTAJPROTOK']
+Scraped 9 rows
+Saved scraped data to: HRvode_scraped_data/HRvode_water_levels_20250713_205009.json
