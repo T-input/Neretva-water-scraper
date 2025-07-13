@@ -40,12 +40,13 @@ jobs:
       - name: Run scraper and save output
         run: python GH_HRvode_scraper.py --firefox-path="${{ steps.setup-firefox.outputs.firefox-path }}" > output.txt
 
-      - name: Commit and push results
+      - name: Commit and push scraped data
         run: |
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
-          git add output.txt
+          git add HRvode_scraped_data/
           git commit -m "Daily scrape: $(date -u '+%Y-%m-%d')" || echo "Nothing to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
 
       - name: Configure git for push
         run: |
