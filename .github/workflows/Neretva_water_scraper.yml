@@ -2,7 +2,7 @@ name: Daily Scraper
 
 on:
   schedule:
-    - cron: "0 11 * * *"
+    - cron: "0 11 * * *" # Runs daily at 11:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -37,8 +37,8 @@ jobs:
         with:
           firefox-version: latest
 
-      - name: Run scraper and save output
-        run: python GH_HRvode_scraper.py --firefox-path="${{ steps.setup-firefox.outputs.firefox-path }}" > output.txt
+      - name: Run scraper
+        run: python GH_HRvode_scraper.py --firefox-path="${{ steps.setup-firefox.outputs.firefox-path }}"
 
       - name: Commit and push scraped data
         run: |
@@ -47,10 +47,3 @@ jobs:
           git add HRvode_scraped_data/
           git commit -m "Daily scrape: $(date -u '+%Y-%m-%d')" || echo "Nothing to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
-
-      - name: Configure git for push
-        run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-
-      - name: Push changes
-        run: git push
