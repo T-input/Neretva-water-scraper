@@ -28,23 +28,23 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y firefox
     
-    - name: Install dependencies for Firefox
-      run: |
-        sudo apt-get install -y \
-          libgtk-3-0 \
-          libdbus-glib-1-2 \
-          libx11-xcb1 \
-          libxtst6 \
-          libxrandr2 \
-          libxss1 \
-          libnss3 \
-          libxcb-shm0 \
-          libxcomposite1 \
-          libxcursor1 \
-          libxdamage1 \
-          libxi6 \
-          xauth \
-          xvfb
+    # - name: Install dependencies for Firefox
+    #   run: |
+    #     sudo apt-get install -y \
+    #       libgtk-3-0 \
+    #       libdbus-glib-1-2 \
+    #       libx11-xcb1 \
+    #       libxtst6 \
+    #       libxrandr2 \
+    #       libxss1 \
+    #       libnss3 \
+    #       libxcb-shm0 \
+    #       libxcomposite1 \
+    #       libxcursor1 \
+    #       libxdamage1 \
+    #       libxi6 \
+    #       xauth \
+    #       xvfb
 
     - name: Run Jadran.ba Scraper
       run: |
@@ -68,8 +68,6 @@ jobs:
         echo "== Firefox crash log =="
         cat firefox.moz_log || echo "No firefox.moz_log found"
 
-        echo "== Geckodriver log =="
-        cat geckodriver.log || echo "No geckodriver.log found"
     
     - name: Dump child log if failed
       if: failure()

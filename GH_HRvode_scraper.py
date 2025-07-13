@@ -25,10 +25,8 @@ def scrape_vodostaji_voda_hr(url):
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
 
-    # IMPORTANT: Use GeckoDriverManager to automatically manage geckodriver
-    service = webdriver.firefox.service.Service(GeckoDriverManager().install(), log_path= os.path.abspath("geckodriver.log")) # UNCOMMENT THIS LINE
-    logging.info("Initialized service")
-    driver = webdriver.Firefox(service=service, options=options) # MODIFY THIS LINE to use service=service
+
+    driver = webdriver.Firefox (options=options) # MODIFY THIS LINE to use service=service
     logging.info("Initialized driver")
     data = []
     try:
