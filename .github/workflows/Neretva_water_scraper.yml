@@ -38,4 +38,10 @@ jobs:
           git config --local user.email "action@github.com"
           git add output.txt
           git commit -m "Daily scrape: $(date -u '+%Y-%m-%d')" || echo "Nothing to commit"
-          git push
+
+      - name: Configure git for push
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+      - name: Push changes
+        run: git push
