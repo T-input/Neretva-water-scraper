@@ -61,6 +61,16 @@ jobs:
         python GH_HRvode_scraper.py
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass the built-in GITHUB_TOKEN as GH_TOKEN
+    
+    - name: Set timestamp
+      id: vars
+      run: echo "timestamp=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_OUTPUT
+
+    - name: Upload water level data
+      uses: actions/upload-artifact@v4
+      with:
+        name: water-levels-${{ steps.vars.outputs.timestamp }}
+        path: artifacts/*.json
 
     - name: Print working directory
       if: failure()
@@ -80,13 +90,5 @@ jobs:
         cat firefox.child-1.moz_log || echo "No firefox.moz_log found"
 
 
-    - name: Commit and push changes (scraped data)
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add scraped_data_avpjm_jadran_ba/
-        git add scraped_data_vodostaji_voda_hr/
-        git commit -m "Automated daily water level data update" || echo "No changes to commit"
-        git push || echo "No changes to push"
 
     # GitHub Actions will now only notify you on workflow failure by default.
