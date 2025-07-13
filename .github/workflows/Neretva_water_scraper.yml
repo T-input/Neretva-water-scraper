@@ -44,7 +44,7 @@ jobs:
         run: |
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
-          git add output.txt
+          git add HRvode_scraped_data/
           git commit -m "Daily scrape: $(date -u '+%Y-%m-%d')" || echo "Nothing to commit"
 
       - name: Configure git for push
