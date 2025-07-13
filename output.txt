@@ -1,0 +1,4 @@
+Starting scrape from: https://vodostaji.voda.hr/
+Error during scraping: Message: binary is not a Firefox executable
+
+No data scraped.
