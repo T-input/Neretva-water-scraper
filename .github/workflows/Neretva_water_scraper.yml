@@ -21,28 +21,24 @@ jobs:
           python-version: "3.9"
           cache: "pip"
 
-      - name: Install dependencies and Firefox
+      - name: Install dependencies except Firefox
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          sudo add-apt-repository -y ppa:mozillateam/ppa
           sudo apt-get update
-          sudo apt-get install -y firefox \
+          sudo apt-get install -y \
             libgtk-3-0 libdbus-glib-1-2 libx11-xcb1 libxtst6 libxrandr2 \
             libxss1 libnss3 libxcb-shm0 libxcomposite1 libxcursor1 \
             libxdamage1 libxi6 xauth xvfb
 
-      - name: Setup geckodriver
-        uses: firefox-actions/setup-geckodriver@v1
+      - name: Setup Firefox
+        id: setup-firefox
+        uses: browser-actions/setup-firefox@v1
         with:
-          geckodriver-version: latest
+          firefox-version: latest
 
       - name: Run scraper and save output
-        run: python GH_HRvode_scraper.py > output.txt
-
-      - name: Configure git for push
-        run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+        run: python GH_HRvode_scraper.py --firefox-path="${{ steps.setup-firefox.outputs.firefox-path }}" > output.txt
 
       - name: Commit and push results
         run: |
@@ -50,4 +46,10 @@ jobs:
           git config --local user.email "action@github.com"
           git add output.txt
           git commit -m "Daily scrape: $(date -u '+%Y-%m-%d')" || echo "Nothing to commit"
-          git push
+
+      - name: Configure git for push
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+      - name: Push changes
+        run: git push

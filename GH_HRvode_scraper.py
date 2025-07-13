@@ -1,6 +1,7 @@
 import os
 import json
 import datetime
+import argparse
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
@@ -9,12 +10,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def setup_driver(headless=True):
+def setup_driver(firefox_binary_path=None, headless=True):
     options = FirefoxOptions()
     if headless:
         options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
+
+    if firefox_binary_path:
+        options.binary_location = firefox_binary_path
+
     return webdriver.Firefox(options=options)
 
 
@@ -27,12 +32,12 @@ def wait_and_click(driver, by, value, timeout=20):
     return element
 
 
-def scrape_water_levels(url):
+def scrape_water_levels(url, firefox_binary_path=None):
     driver = None
     data = []
 
     try:
-        driver = setup_driver()
+        driver = setup_driver(firefox_binary_path=firefox_binary_path)
         driver.get(url)
         print(f"Opened: {url}")
 
@@ -97,9 +102,14 @@ def save_data(data, output_dir="HRvode_scraped_data"):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--firefox-path", type=str, help="Path to Firefox binary")
+    args = parser.parse_args()
+
     url = "https://vodostaji.voda.hr/"
     print(f"Starting scrape from: {url}")
-    scraped_data = scrape_water_levels(url)
+
+    scraped_data = scrape_water_levels(url, firefox_binary_path=args.firefox_path)
 
     if scraped_data:
         save_data(scraped_data)
