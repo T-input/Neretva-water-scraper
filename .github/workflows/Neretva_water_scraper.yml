@@ -21,7 +21,7 @@ jobs:
           python-version: "3.9"
           cache: "pip"
 
-      - name: Install dependencies
+      - name: Install dependencies and Firefox
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -32,8 +32,17 @@ jobs:
             libxss1 libnss3 libxcb-shm0 libxcomposite1 libxcursor1 \
             libxdamage1 libxi6 xauth xvfb
 
+      - name: Setup geckodriver
+        uses: firefox-actions/setup-geckodriver@v1
+        with:
+          geckodriver-version: latest
+
       - name: Run scraper and save output
         run: python GH_HRvode_scraper.py > output.txt
+
+      - name: Configure git for push
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
       - name: Commit and push results
         run: |
@@ -41,10 +50,4 @@ jobs:
           git config --local user.email "action@github.com"
           git add output.txt
           git commit -m "Daily scrape: $(date -u '+%Y-%m-%d')" || echo "Nothing to commit"
-
-      - name: Configure git for push
-        run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-
-      - name: Push changes
-        run: git push
+          git push
