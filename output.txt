@@ -1,0 +1,7 @@
+Starting scrape from: https://vodostaji.voda.hr/
+Opened: https://vodostaji.voda.hr/
+Clicked 'btn_list'
+Opened dropdown 'bp'
+Error during scraping: Message: 
+
+No data scraped.
