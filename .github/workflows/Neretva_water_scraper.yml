@@ -30,8 +30,7 @@ jobs:
 
     - name: Which firefox
       run: |
-        which firefox
-        find /snap/firefox/ -name firefox | grep -E '/current/.*firefox$'
+        find /snap/firefox/ -name firefox
     
     # - name: Install dependencies for Firefox
     #   run: |
