@@ -13,10 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python with pip cache
         uses: actions/setup-python@v5
         with:
           python-version: "3.9"
+          cache: "pip"
 
       - name: Install dependencies
         run: |
@@ -29,8 +30,7 @@ jobs:
             libxdamage1 libxi6 xauth xvfb
 
       - name: Run scraper and save output
-        run: |
-          python GH_HRvode_scraper.py > output.txt
+        run: python GH_HRvode_scraper.py > output.txt
 
       - name: Commit and push results
         run: |
