@@ -70,7 +70,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: water-levels-${{ steps.vars.outputs.timestamp }}
-        path: artifacts/*.json
+        path: scraped_data_vodostaji_voda_hr/*.json
 
     - name: Print working directory
       if: failure()
