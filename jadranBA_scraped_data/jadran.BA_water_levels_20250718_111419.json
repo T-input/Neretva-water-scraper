@@ -1,0 +1,135 @@
+[
+    [
+        "Naziv",
+        "Vodotok",
+        "Zadnje mjerenje",
+        "Vrijednost",
+        "Trend"
+    ],
+    [
+        "Mostar",
+        "Neretva",
+        "18.07.2025 u 11:45",
+        "241 cm",
+        "1 cm"
+    ],
+    [
+        "Baćevići",
+        "Neretva",
+        "18.07.2025 u 11:45",
+        "171 cm",
+        "-1 cm"
+    ],
+    [
+        "Žitomislići",
+        "Neretva",
+        "18.07.2025 u 11:45",
+        "61 cm",
+        "0 cm"
+    ],
+    [
+        "Čapljina",
+        "Neretva",
+        "18.07.2025 u 11:45",
+        "-251 cm",
+        "-1 cm"
+    ],
+    [
+        "Gabela",
+        "Neretva",
+        "18.07.2025 u 11:45",
+        "-5 cm",
+        "1 cm"
+    ],
+    [
+        "Dračevo nizvodni",
+        "Neretva",
+        "18.07.2025 u 11:45",
+        "92 cm",
+        "1 cm"
+    ],
+    [
+        "Radobolja",
+        "Radobolja",
+        "18.07.2025 u 11:45",
+        "24 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - Dom",
+        "Jasenica",
+        "18.07.2025 u 11:45",
+        "32 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - most",
+        "Jasenica",
+        "18.07.2025 u 11:45",
+        "22 cm",
+        "0 cm"
+    ],
+    [
+        "Stolac",
+        "Bregava",
+        "18.07.2025 u 11:45",
+        "6 cm",
+        "0 cm"
+    ],
+    [
+        "Blagaj 2",
+        "Buna",
+        "18.07.2025 u 11:45",
+        "33 cm",
+        "-1 cm"
+    ],
+    [
+        "Buna",
+        "Buna",
+        "18.07.2025 u 11:45",
+        "66 cm",
+        "0 cm"
+    ],
+    [
+        "Karaotok",
+        "Krupa",
+        "18.07.2025 u 11:45",
+        "52 cm",
+        "0 cm"
+    ],
+    [
+        "Dračevo",
+        "Krupa",
+        "18.07.2025 u 11:45",
+        "25 cm",
+        "1 cm"
+    ],
+    [
+        "Klobuk",
+        "Tihaljina",
+        "18.07.2025 u 11:45",
+        "102 cm",
+        "0 cm"
+    ],
+    [
+        "Vitina",
+        "Vrioštica",
+        "18.07.2025 u 11:45",
+        "71 cm",
+        "0 cm"
+    ],
+    [
+        "Humac",
+        "Trebižat",
+        "18.07.2025 u 11:45",
+        "144 cm",
+        "0 cm"
+    ],
+    [
+        "Struge",
+        "Trebižat",
+        "18.07.2025 u 11:45",
+        "81 cm",
+        "0 cm"
+    ]
+]
