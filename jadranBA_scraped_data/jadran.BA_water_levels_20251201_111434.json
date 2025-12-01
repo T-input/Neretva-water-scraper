@@ -1,0 +1,135 @@
+[
+    [
+        "Naziv",
+        "Vodotok",
+        "Zadnje mjerenje",
+        "Vrijednost",
+        "Trend"
+    ],
+    [
+        "Mostar",
+        "Neretva",
+        "01.12.2025 u 11:45",
+        "416 cm",
+        "2 cm"
+    ],
+    [
+        "Baćevići",
+        "Neretva",
+        "01.12.2025 u 11:45",
+        "327 cm",
+        "-5 cm"
+    ],
+    [
+        "Žitomislići",
+        "Neretva",
+        "01.12.2025 u 11:45",
+        "234 cm",
+        "0 cm"
+    ],
+    [
+        "Čapljina",
+        "Neretva",
+        "01.12.2025 u 11:45",
+        "-113 cm",
+        "5 cm"
+    ],
+    [
+        "Gabela",
+        "Neretva",
+        "01.12.2025 u 11:45",
+        "77 cm",
+        "3 cm"
+    ],
+    [
+        "Dračevo nizvodni",
+        "Neretva",
+        "01.12.2025 u 11:45",
+        "151 cm",
+        "2 cm"
+    ],
+    [
+        "Radobolja",
+        "Radobolja",
+        "01.12.2025 u 11:45",
+        "72 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - Dom",
+        "Jasenica",
+        "01.12.2025 u 11:45",
+        "126 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - most",
+        "Jasenica",
+        "01.12.2025 u 11:45",
+        "109 cm",
+        "0 cm"
+    ],
+    [
+        "Stolac",
+        "Bregava",
+        "01.12.2025 u 11:45",
+        "96 cm",
+        "2 cm"
+    ],
+    [
+        "Blagaj 2",
+        "Buna",
+        "01.12.2025 u 11:45",
+        "115 cm",
+        "0 cm"
+    ],
+    [
+        "Buna",
+        "Buna",
+        "01.12.2025 u 11:45",
+        "182 cm",
+        "-1 cm"
+    ],
+    [
+        "Karaotok",
+        "Krupa",
+        "01.12.2025 u 11:45",
+        "223 cm",
+        "-1 cm"
+    ],
+    [
+        "Dračevo",
+        "Krupa",
+        "01.12.2025 u 11:45",
+        "124 cm",
+        "1 cm"
+    ],
+    [
+        "Klobuk",
+        "Tihaljina",
+        "01.12.2025 u 11:45",
+        "147 cm",
+        "0 cm"
+    ],
+    [
+        "Vitina",
+        "Vrioštica",
+        "01.12.2025 u 11:45",
+        "82 cm",
+        "0 cm"
+    ],
+    [
+        "Humac",
+        "Trebižat",
+        "01.12.2025 u 11:45",
+        "267 cm",
+        "0 cm"
+    ],
+    [
+        "Struge",
+        "Trebižat",
+        "01.12.2025 u 11:45",
+        "159 cm",
+        "0 cm"
+    ]
+]
