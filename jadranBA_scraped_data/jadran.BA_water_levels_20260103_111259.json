@@ -1,0 +1,142 @@
+[
+    [
+        "Naziv",
+        "Vodotok",
+        "Zadnje mjerenje",
+        "Vrijednost",
+        "Trend"
+    ],
+    [
+        "Mostar",
+        "Neretva",
+        "03.01.2026 u 11:45",
+        "462 cm",
+        "11 cm"
+    ],
+    [
+        "Baćevići",
+        "Neretva",
+        "03.01.2026 u 11:45",
+        "314 cm",
+        "1 cm"
+    ],
+    [
+        "Žitomislići",
+        "Neretva",
+        "03.01.2026 u 11:45",
+        "166 cm",
+        "5 cm"
+    ],
+    [
+        "Čapljina",
+        "Neretva",
+        "03.01.2026 u 11:45",
+        "-197 cm",
+        "3 cm"
+    ],
+    [
+        "Gabela",
+        "Neretva",
+        "03.01.2026 u 11:45",
+        "-11 cm",
+        "2 cm"
+    ],
+    [
+        "Dračevo nizvodni",
+        "Neretva",
+        "03.01.2026 u 11:45",
+        "77 cm",
+        "1 cm"
+    ],
+    [
+        "Radobolja",
+        "Radobolja",
+        "03.01.2026 u 11:45",
+        "52 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - Dom",
+        "Jasenica",
+        "03.01.2026 u 11:45",
+        "82 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - most",
+        "Jasenica",
+        "03.01.2026 u 11:45",
+        "68 cm",
+        "0 cm"
+    ],
+    [
+        "Stolac",
+        "Bregava",
+        "03.01.2026 u 11:45",
+        "30 cm",
+        "-1 cm"
+    ],
+    [
+        "Blagaj 2",
+        "Buna",
+        "03.01.2026 u 11:45",
+        "63 cm",
+        "0 cm"
+    ],
+    [
+        "Malo Polje 2",
+        "Bunica",
+        "03.01.2026 u 11:45",
+        "48 cm",
+        "0 cm"
+    ],
+    [
+        "Buna",
+        "Buna",
+        "03.01.2026 u 11:45",
+        "95 cm",
+        "0 cm"
+    ],
+    [
+        "Karaotok",
+        "Krupa",
+        "03.01.2026 u 11:45",
+        "74 cm",
+        "-1 cm"
+    ],
+    [
+        "Dračevo",
+        "Krupa",
+        "03.01.2026 u 11:45",
+        "23 cm",
+        "0 cm"
+    ],
+    [
+        "Klobuk",
+        "Tihaljina",
+        "03.01.2026 u 11:45",
+        "126 cm",
+        "1 cm"
+    ],
+    [
+        "Vitina",
+        "Vrioštica",
+        "03.01.2026 u 11:45",
+        "85 cm",
+        "0 cm"
+    ],
+    [
+        "Humac",
+        "Trebižat",
+        "03.01.2026 u 11:45",
+        "193 cm",
+        "0 cm"
+    ],
+    [
+        "Struge",
+        "Trebižat",
+        "03.01.2026 u 11:45",
+        "112 cm",
+        "-1 cm"
+    ]
+]
