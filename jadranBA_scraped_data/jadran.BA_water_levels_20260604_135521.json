@@ -1,0 +1,149 @@
+[
+    [
+        "Naziv",
+        "Vodotok",
+        "Zadnje mjerenje",
+        "Vrijednost",
+        "Trend"
+    ],
+    [
+        "Mostar",
+        "Neretva",
+        "04.06.2026 u 14:30",
+        "268 cm",
+        "0 cm"
+    ],
+    [
+        "Baćevići",
+        "Neretva",
+        "04.06.2026 u 14:30",
+        "192 cm",
+        "0 cm"
+    ],
+    [
+        "Žitomislići",
+        "Neretva",
+        "04.06.2026 u 14:30",
+        "74 cm",
+        "0 cm"
+    ],
+    [
+        "Čapljina",
+        "Neretva",
+        "04.06.2026 u 14:30",
+        "-250 cm",
+        "1 cm"
+    ],
+    [
+        "Gabela",
+        "Neretva",
+        "04.06.2026 u 14:30",
+        "-13 cm",
+        "3 cm"
+    ],
+    [
+        "Dračevo nizvodni",
+        "Neretva",
+        "04.06.2026 u 14:30",
+        "84 cm",
+        "1 cm"
+    ],
+    [
+        "Radobolja",
+        "Radobolja",
+        "04.06.2026 u 14:30",
+        "29 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - Dom",
+        "Jasenica",
+        "04.06.2026 u 14:30",
+        "31 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - most",
+        "Jasenica",
+        "04.06.2026 u 14:15",
+        "62 cm",
+        "0 cm"
+    ],
+    [
+        "Stolac",
+        "Bregava",
+        "04.06.2026 u 14:30",
+        "13 cm",
+        "0 cm"
+    ],
+    [
+        "Blagaj 2",
+        "Buna",
+        "04.06.2026 u 14:30",
+        "37 cm",
+        "0 cm"
+    ],
+    [
+        "Malo Polje 2",
+        "Bunica",
+        "04.06.2026 u 14:30",
+        "36 cm",
+        "0 cm"
+    ],
+    [
+        "Buna",
+        "Buna",
+        "04.06.2026 u 14:30",
+        "73 cm",
+        "0 cm"
+    ],
+    [
+        "Karaotok",
+        "Krupa",
+        "04.06.2026 u 14:30",
+        "63 cm",
+        "0 cm"
+    ],
+    [
+        "Dračevo",
+        "Krupa",
+        "04.06.2026 u 14:30",
+        "20 cm",
+        "0 cm"
+    ],
+    [
+        "Grudsko Vrilo",
+        "knl. Grudsko Vrilo - Vrljika",
+        "04.06.2026 u 14:30",
+        "51 cm",
+        "0 cm"
+    ],
+    [
+        "Klobuk",
+        "Tihaljina",
+        "04.06.2026 u 14:30",
+        "109 cm",
+        "0 cm"
+    ],
+    [
+        "Vitina",
+        "Vrioštica",
+        "04.06.2026 u 14:30",
+        "72 cm",
+        "0 cm"
+    ],
+    [
+        "Humac",
+        "Trebižat",
+        "04.06.2026 u 14:30",
+        "162 cm",
+        "0 cm"
+    ],
+    [
+        "Struge",
+        "Trebižat",
+        "04.06.2026 u 14:30",
+        "95 cm",
+        "0 cm"
+    ]
+]
