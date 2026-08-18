@@ -1,0 +1,149 @@
+[
+    [
+        "Naziv",
+        "Vodotok",
+        "Zadnje mjerenje",
+        "Vrijednost",
+        "Trend"
+    ],
+    [
+        "Mostar",
+        "Neretva",
+        "18.08.2026 u 12:00",
+        "244 cm",
+        "1 cm"
+    ],
+    [
+        "Baćevići",
+        "Neretva",
+        "18.08.2026 u 12:00",
+        "170 cm",
+        "0 cm"
+    ],
+    [
+        "Žitomislići",
+        "Neretva",
+        "18.08.2026 u 12:00",
+        "55 cm",
+        "0 cm"
+    ],
+    [
+        "Čapljina",
+        "Neretva",
+        "18.08.2026 u 12:00",
+        "-263 cm",
+        "-1 cm"
+    ],
+    [
+        "Gabela",
+        "Neretva",
+        "18.08.2026 u 12:00",
+        "-23 cm",
+        "2 cm"
+    ],
+    [
+        "Dračevo nizvodni",
+        "Neretva",
+        "18.08.2026 u 12:00",
+        "76 cm",
+        "2 cm"
+    ],
+    [
+        "Radobolja",
+        "Radobolja",
+        "18.08.2026 u 12:00",
+        "20 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - Dom",
+        "Jasenica",
+        "18.08.2026 u 12:00",
+        "30 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - most",
+        "Jasenica",
+        "18.08.2026 u 12:00",
+        "22 cm",
+        "0 cm"
+    ],
+    [
+        "Stolac",
+        "Bregava",
+        "18.08.2026 u 12:00",
+        "2 cm",
+        "-1 cm"
+    ],
+    [
+        "Blagaj 2",
+        "Buna",
+        "18.08.2026 u 12:00",
+        "20 cm",
+        "0 cm"
+    ],
+    [
+        "Malo Polje 2",
+        "Bunica",
+        "18.08.2026 u 12:00",
+        "28 cm",
+        "0 cm"
+    ],
+    [
+        "Buna",
+        "Buna",
+        "18.08.2026 u 12:00",
+        "49 cm",
+        "0 cm"
+    ],
+    [
+        "Karaotok",
+        "Krupa",
+        "18.08.2026 u 12:00",
+        "32 cm",
+        "-1 cm"
+    ],
+    [
+        "Dračevo",
+        "Krupa",
+        "18.08.2026 u 12:00",
+        "11 cm",
+        "-1 cm"
+    ],
+    [
+        "Grudsko Vrilo",
+        "knl. Grudsko Vrilo - Vrljika",
+        "18.08.2026 u 12:00",
+        "-11 cm",
+        "0 cm"
+    ],
+    [
+        "Klobuk",
+        "Tihaljina",
+        "18.08.2026 u 12:00",
+        "97 cm",
+        "0 cm"
+    ],
+    [
+        "Vitina",
+        "Vrioštica",
+        "18.08.2026 u 12:00",
+        "68 cm",
+        "0 cm"
+    ],
+    [
+        "Humac",
+        "Trebižat",
+        "18.08.2026 u 12:00",
+        "146 cm",
+        "-1 cm"
+    ],
+    [
+        "Struge",
+        "Trebižat",
+        "18.08.2026 u 12:00",
+        "79 cm",
+        "0 cm"
+    ]
+]
