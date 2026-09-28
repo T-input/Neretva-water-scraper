@@ -1,0 +1,149 @@
+[
+    [
+        "Naziv",
+        "Vodotok",
+        "Zadnje mjerenje",
+        "Vrijednost",
+        "Trend"
+    ],
+    [
+        "Mostar",
+        "Neretva",
+        "28.09.2026 u 19:00",
+        "246 cm",
+        "0 cm"
+    ],
+    [
+        "Baćevići",
+        "Neretva",
+        "28.09.2026 u 19:00",
+        "177 cm",
+        "0 cm"
+    ],
+    [
+        "Žitomislići",
+        "Neretva",
+        "28.09.2026 u 19:00",
+        "60 cm",
+        "0 cm"
+    ],
+    [
+        "Čapljina",
+        "Neretva",
+        "28.09.2026 u 19:00",
+        "-257 cm",
+        "0 cm"
+    ],
+    [
+        "Gabela",
+        "Neretva",
+        "28.09.2026 u 19:00",
+        "-14 cm",
+        "-1 cm"
+    ],
+    [
+        "Dračevo nizvodni",
+        "Neretva",
+        "28.09.2026 u 19:00",
+        "81 cm",
+        "-2 cm"
+    ],
+    [
+        "Radobolja",
+        "Radobolja",
+        "28.09.2026 u 19:00",
+        "20 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - Dom",
+        "Jasenica",
+        "28.09.2026 u 19:00",
+        "30 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - most",
+        "Jasenica",
+        "28.09.2026 u 19:00",
+        "21 cm",
+        "0 cm"
+    ],
+    [
+        "Stolac",
+        "Bregava",
+        "28.09.2026 u 19:00",
+        "5 cm",
+        "1 cm"
+    ],
+    [
+        "Blagaj 2",
+        "Buna",
+        "28.09.2026 u 19:00",
+        "5 cm",
+        "0 cm"
+    ],
+    [
+        "Malo Polje 2",
+        "Bunica",
+        "28.09.2026 u 19:00",
+        "25 cm",
+        "0 cm"
+    ],
+    [
+        "Buna",
+        "Buna",
+        "28.09.2026 u 19:00",
+        "45 cm",
+        "0 cm"
+    ],
+    [
+        "Karaotok",
+        "Krupa",
+        "28.09.2026 u 19:00",
+        "29 cm",
+        "0 cm"
+    ],
+    [
+        "Dračevo",
+        "Krupa",
+        "28.09.2026 u 19:00",
+        "9 cm",
+        "-1 cm"
+    ],
+    [
+        "Grudsko Vrilo",
+        "knl. Grudsko Vrilo - Vrljika",
+        "28.09.2026 u 19:00",
+        "-13 cm",
+        "0 cm"
+    ],
+    [
+        "Klobuk",
+        "Tihaljina",
+        "28.09.2026 u 19:00",
+        "94 cm",
+        "0 cm"
+    ],
+    [
+        "Vitina",
+        "Vrioštica",
+        "28.09.2026 u 19:00",
+        "66 cm",
+        "0 cm"
+    ],
+    [
+        "Humac",
+        "Trebižat",
+        "28.09.2026 u 19:00",
+        "142 cm",
+        "0 cm"
+    ],
+    [
+        "Struge",
+        "Trebižat",
+        "28.09.2026 u 19:00",
+        "78 cm",
+        "0 cm"
+    ]
+]
