@@ -1,0 +1,81 @@
+[
+    [
+        "",
+        "VODOTOK",
+        "POSTAJA",
+        "ZADNJE MJERENJE",
+        "VODOSTAJPROTOK"
+    ],
+    [
+        "",
+        "Konavočica",
+        "Gruda uzv.",
+        "09.10.2026. 17:30 h",
+        "10 cm",
+        "0"
+    ],
+    [
+        "",
+        "Ljuta",
+        "Dvor nizvodni",
+        "09.10.2026. 14:00 h",
+        "19 cm",
+        "0"
+    ],
+    [
+        "",
+        "Mala Neretva",
+        "Ustava ušće nizv.",
+        "09.10.2026. 17:30 h",
+        "81 cm",
+        "-2"
+    ],
+    [
+        "",
+        "Mala Neretva",
+        "Opuzen ustava nizv.",
+        "09.10.2026. 17:30 h",
+        "58 cm",
+        "0"
+    ],
+    [
+        "",
+        "Neretva",
+        "Opuzen",
+        "09.10.2026. 17:30 h",
+        "79 cm",
+        "+2"
+    ],
+    [
+        "",
+        "Neretva",
+        "Metković *",
+        "09.10.2026. 18:00 h",
+        "89 cm",
+        "-18"
+    ],
+    [
+        "",
+        "Neretva",
+        "Jerkovac",
+        "",
+        "",
+        ""
+    ],
+    [
+        "",
+        "Obodni kanal Koševo - Vrbovci",
+        "Veraja",
+        "11.01.2023. 08:00 h",
+        "350 cm",
+        "0"
+    ],
+    [
+        "",
+        "Ombla",
+        "Komolac *",
+        "07.10.2026. 06:00 h",
+        "6 cm",
+        "0"
+    ]
+]
