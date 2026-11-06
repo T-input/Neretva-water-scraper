@@ -1,0 +1,149 @@
+[
+    [
+        "Naziv",
+        "Vodotok",
+        "Zadnje mjerenje",
+        "Vrijednost",
+        "Trend"
+    ],
+    [
+        "Mostar",
+        "Neretva",
+        "06.11.2026 u 18:30",
+        "383 cm",
+        "4 cm"
+    ],
+    [
+        "Baćevići",
+        "Neretva",
+        "06.11.2026 u 18:30",
+        "254 cm",
+        "9 cm"
+    ],
+    [
+        "Žitomislići",
+        "Neretva",
+        "06.11.2026 u 18:30",
+        "101 cm",
+        "1 cm"
+    ],
+    [
+        "Čapljina",
+        "Neretva",
+        "06.11.2026 u 18:30",
+        "-231 cm",
+        "0 cm"
+    ],
+    [
+        "Gabela",
+        "Neretva",
+        "06.11.2026 u 18:30",
+        "-18 cm",
+        "-2 cm"
+    ],
+    [
+        "Dračevo nizvodni",
+        "Neretva",
+        "06.11.2026 u 18:30",
+        "74 cm",
+        "-2 cm"
+    ],
+    [
+        "Radobolja",
+        "Radobolja",
+        "06.11.2026 u 18:30",
+        "22 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - Dom",
+        "Jasenica",
+        "06.11.2026 u 18:30",
+        "30 cm",
+        "0 cm"
+    ],
+    [
+        "Jasenica - most",
+        "Jasenica",
+        "12.10.2026 u 20:45",
+        "21 cm",
+        "0 cm"
+    ],
+    [
+        "Stolac",
+        "Bregava",
+        "06.11.2026 u 18:30",
+        "11 cm",
+        "1 cm"
+    ],
+    [
+        "Blagaj 2",
+        "Buna",
+        "06.11.2026 u 18:30",
+        "7 cm",
+        "-1 cm"
+    ],
+    [
+        "Malo Polje 2",
+        "Bunica",
+        "06.11.2026 u 18:30",
+        "28 cm",
+        "1 cm"
+    ],
+    [
+        "Buna",
+        "Buna",
+        "06.11.2026 u 18:30",
+        "49 cm",
+        "-1 cm"
+    ],
+    [
+        "Karaotok",
+        "Krupa",
+        "06.11.2026 u 18:30",
+        "44 cm",
+        "-1 cm"
+    ],
+    [
+        "Dračevo",
+        "Krupa",
+        "06.11.2026 u 18:30",
+        "8 cm",
+        "-2 cm"
+    ],
+    [
+        "Grudsko Vrilo",
+        "knl. Grudsko Vrilo - Vrljika",
+        "06.11.2026 u 18:30",
+        "-11 cm",
+        "0 cm"
+    ],
+    [
+        "Klobuk",
+        "Tihaljina",
+        "06.11.2026 u 18:30",
+        "95 cm",
+        "0 cm"
+    ],
+    [
+        "Vitina",
+        "Vrioštica",
+        "06.11.2026 u 18:30",
+        "69 cm",
+        "0 cm"
+    ],
+    [
+        "Humac",
+        "Trebižat",
+        "06.11.2026 u 18:30",
+        "145 cm",
+        "0 cm"
+    ],
+    [
+        "Struge",
+        "Trebižat",
+        "06.11.2026 u 18:30",
+        "81 cm",
+        "0 cm"
+    ]
+]
